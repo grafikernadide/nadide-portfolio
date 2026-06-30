@@ -66,3 +66,31 @@ body {
   opacity: .75;
   text-shadow: 0 2px 12px rgba(0,0,0,.4);
 }
+
+.cover-socials {
+  margin-top: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.cover-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(6px);
+  transition: background .3s, transform .3s cubic-bezier(0.22,1,0.36,1), border-color .3s;
+}
+
+.cover-socials a:hover {
+  background: rgba(255,255,255,.25);
+  border-color: rgba(255,255,255,.5);
+  transform: translateY(-4px);
+}
