@@ -1,96 +1,217 @@
-/* NADIDE BAYKAN — Coming Soon Cover */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* NADIDE BAYKAN — Kartvizit sayfası */
+:root {
+  --ink: #0D0D12;
+  --paper: #F4F2EC;
+  --cobalt: #2B4DFF;
+  --cobalt-lt: #7C92FF;
+  --coral: #FF5C39;
+  --sun: #FFC93C;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 
 body {
   font-family: 'General Sans', system-ui, sans-serif;
-  color: #fff;
+  background: var(--ink);
+  color: var(--paper);
   overflow: hidden;
 }
 
-.cover {
+.card {
   position: relative;
   width: 100%;
+  height: 100vh;
   height: 100svh;
-  background: url('background.jpeg') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  overflow: hidden;
 }
 
-.cover-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(20,19,30,.35), rgba(20,19,30,.55));
-  z-index: 1;
+/* ── Arka plan ── */
+.art { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+
+.grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(244,242,236,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,242,236,.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
+          mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
 }
 
-.cover-content {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
-  animation: fadeIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
+.shape { position: absolute; animation: shape-in 1.2s var(--ease) both; }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.cover-eyebrow {
-  font-size: clamp(.8rem, 2vw, 1rem);
-  font-weight: 500;
-  letter-spacing: .35em;
-  text-transform: uppercase;
-  margin-bottom: 1.2rem;
-  opacity: .85;
-  text-shadow: 0 2px 12px rgba(0,0,0,.4);
-}
-
-.cover-name {
-  font-family: 'Clash Display', serif;
-  font-weight: 600;
-  font-size: clamp(2.6rem, 9vw, 6rem);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  text-shadow: 0 4px 30px rgba(0,0,0,.45);
-}
-
-.cover-soon {
-  margin-top: 1.6rem;
-  font-size: clamp(.85rem, 2vw, 1.05rem);
-  font-weight: 300;
-  letter-spacing: .15em;
-  opacity: .75;
-  text-shadow: 0 2px 12px rgba(0,0,0,.4);
-}
-
-.cover-socials {
-  margin-top: 1.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.4rem;
-}
-
-.cover-socials a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
+.s-blue {
+  width: 78vmin; height: 78vmin;
+  top: -24vmin; right: -22vmin;
   border-radius: 50%;
-  color: #fff;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.25);
-  backdrop-filter: blur(6px);
-  transition: background .3s, transform .3s cubic-bezier(0.22,1,0.36,1), border-color .3s;
+  background: var(--cobalt);
+  animation-delay: .05s;
+}
+.s-coral {
+  width: 50vmin; height: 50vmin;
+  left: -8vmin; bottom: -8vmin;
+  border-radius: 0 100% 0 0;
+  background: var(--coral);
+  animation-delay: .18s;
+}
+.s-hatch {
+  width: 34vmin; height: 34vmin;
+  right: 7vmin; bottom: -9vmin;
+  border-radius: 50%;
+  background: repeating-linear-gradient(-45deg, rgba(244,242,236,.8) 0 1.5px, transparent 1.5px 11px);
+  animation-delay: .3s;
+}
+.s-ring {
+  width: 24vmin; height: 24vmin;
+  left: 30vmin; bottom: 10vmin;
+  border-radius: 50%;
+  border: 1.5px solid rgba(244,242,236,.55);
+  animation-delay: .4s;
+}
+.s-sun {
+  width: 11vmin; height: 11vmin;
+  top: 15vmin; left: 13vmin;
+  border-radius: 50%;
+  background: var(--sun);
+  animation: shape-in 1.2s var(--ease) .5s both, drift 9s ease-in-out 1.8s infinite;
 }
 
-.cover-socials a:hover {
-  background: rgba(255,255,255,.25);
-  border-color: rgba(255,255,255,.5);
-  transform: translateY(-4px);
+@keyframes shape-in {
+  from { opacity: 0; transform: scale(.82) translateY(4vmin); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(1.6vmin, -2.2vmin); }
+}
+
+.grain {
+  position: absolute; inset: 0;
+  opacity: .16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Baskı kesim işaretleri */
+.crop { position: absolute; width: 18px; height: 18px; opacity: .6; }
+.crop::before, .crop::after { content: ''; position: absolute; background: var(--paper); }
+.crop::before { width: 100%; height: 1px; top: 0; }
+.crop::after  { width: 1px; height: 100%; left: 0; }
+.c-tl { top: 22px; left: 22px; }
+.c-tr { top: 22px; right: 22px; transform: scaleX(-1); }
+.c-bl { bottom: 22px; left: 22px; transform: scaleY(-1); }
+.c-br { bottom: 22px; right: 22px; transform: scale(-1); }
+
+/* ── İçerik ── */
+.content { position: relative; z-index: 1; padding: 1.5rem; }
+
+.eyebrow {
+  font-size: clamp(.72rem, 1.6vw, .95rem);
+  font-weight: 500;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  padding-left: .38em;
+  animation: rise .9s var(--ease) .35s both;
+}
+
+.name {
+  font-family: 'Clash Display', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-size: clamp(3.4rem, min(14vw, 17vh), 10rem);
+  line-height: .9;
+  letter-spacing: -.035em;
+}
+.name span { display: block; animation: rise 1s var(--ease) both; }
+.name span:nth-child(1) { animation-delay: .45s; }
+.name span:nth-child(2) { animation-delay: .57s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Eğri ve düğüm ikonları ── */
+.path {
+  position: relative;
+  width: min(440px, 88vw);
+  aspect-ratio: 440 / 180;
+  margin: clamp(.4rem, 2vh, 1.6rem) auto 0;
+}
+.path-line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+.curve {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s var(--ease) .9s forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.handles, .end { animation: fade .6s ease 2s both; }
+.handles line { stroke: var(--cobalt-lt); stroke-width: 1.25; }
+.handles circle { fill: var(--ink); stroke: var(--cobalt-lt); stroke-width: 1.25; }
+.end { fill: var(--ink); stroke: var(--paper); stroke-width: 1.25; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.node {
+  position: absolute;
+  width: 56px; height: 56px;
+  margin: -28px 0 0 -28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1.5px solid var(--paper);
+  color: var(--paper);
+  text-decoration: none;
+  transition: background .3s, color .3s, border-color .3s, transform .35s var(--ease);
+  animation: pop .6s var(--ease) both;
+}
+.n1 { left: 17.045%; top: 65.556%; animation-delay: 1.35s; }
+.n2 { left: 50%;     top: 34.444%; animation-delay: 1.6s; }
+.n3 { left: 82.955%; top: 65.556%; animation-delay: 1.85s; }
+
+.node svg, .ico-behance { width: 23px; height: 23px; display: block; }
+.node svg { fill: currentColor; }
+.ico-behance {
+  width: 26px; height: 26px;
+  background: currentColor;
+  -webkit-mask: url('icons/behance.svg') center / contain no-repeat;
+          mask: url('icons/behance.svg') center / contain no-repeat;
+}
+
+.node:hover, .node:focus-visible {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+  transform: scale(1.12);
+}
+.node:focus-visible { outline: 2px solid var(--paper); outline-offset: 4px; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(.4); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 480px) {
+  .node { width: 50px; height: 50px; margin: -25px 0 0 -25px; }
+  .s-ring { left: 34vmin; bottom: 16vmin; }
+  .c-tl, .c-tr { top: 14px; } .c-bl, .c-br { bottom: 14px; }
+  .c-tl, .c-bl { left: 14px; } .c-tr, .c-br { right: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .curve { stroke-dashoffset: 0; }
 }
